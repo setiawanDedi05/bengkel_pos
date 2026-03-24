@@ -1,13 +1,12 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Users', {
       id: {
-        allowNull: false,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
       },
       fullName: {
         type: Sequelize.STRING,
@@ -31,10 +30,11 @@ module.exports = {
         type: Sequelize.ENUM('admin', 'cashier'),
         allowNull: false,
         defaultValue: 'cashier',
-      }
+      },
     });
   },
-  async down(queryInterface, Sequelize) {
+
+  down: async (queryInterface) => {
     await queryInterface.dropTable('Users');
-  }
+  },
 };
